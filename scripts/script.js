@@ -14,6 +14,7 @@ function initializeCards(cards){
     let gameBoard = document.getElementById('gameBoard');
     gameBoard.innerHTML = '';
     game.cards.forEach(card => {
+
         let cardElement = document.createElement('div');
         cardElement.id = card.id;
         cardElement.classList.add(CARD);
@@ -55,6 +56,7 @@ function flipCard(){
                 game.clearCards();
                 if(game.checkGameOver()){
                     let gameOverLayer = document.getElementById('gameOver');
+                    console.log(gameOverLayer)
                     gameOverLayer.style.display = 'flex';
                 }
             }else{
