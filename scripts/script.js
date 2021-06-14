@@ -1,5 +1,6 @@
 const front = 'card_front';
 const back = 'card_back';
+let cards = null;
 
 let techs = [
     'bootstrap',
@@ -14,7 +15,26 @@ let techs = [
     'react'
 ];
 
-createCardsFromTechs(techs);
+startGame();
+
+function startGame(){
+    cards = createCardsFromTechs(techs);
+    shuffleCards(cards);
+    console.log(cards)
+}
+
+function shuffleCards(cards){
+    let currentIndex = cards.length;
+    let randomIndex = 0;
+
+    while (currentIndex !== 0){
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
+    }
+}
 
 function createCardsFromTechs(techs){
 
