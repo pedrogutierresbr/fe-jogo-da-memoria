@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Jogo da Memória</title>
+        <link rel="shortcut icon" href="./assets/page-icon.ico" />
+        <link rel="stylesheet" href="./styles/style.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Memória</title>
-    <link rel="shortcut icon" href="./assets/page-icon.ico">
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-    <div class="wrapper">
-        <div class="scoreboard">
-            <div>
-                <h3>Movimentos:</h3>
-                <p><span>00</span></p>
-            </div>
-            <div></div>
-            <div>
-                <h3>Tempo:</h3>
-                <p><span>00</span>:<span>00</span></p>
+    <body>
+        <div class="wrapper">
+            <div class="scoreboard">
+                <div>
+                    <h3>Movimentos:</h3>
+                    <p><span>00</span></p>
+                </div>
+                <div></div>
+                <div>
+                    <h3>Tempo:</h3>
+                    <p><span id="timer">00:00:00</span></p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="gameBoard">
-        <!-- <div id="rand0w" class="card" data-icon="bootstrap">
+        <div id="gameBoard">
+            <!-- <div id="rand0w" class="card" data-icon="bootstrap">
             <div class="card-front">
                 <img class="icon" src="./assets/bootstrap.png" alt="">
             </div>
@@ -39,18 +40,16 @@
                 &lt;/&gt;
             </div>
         </div> -->
-
-    </div>
-
-    <div id="gameOver">
-        <div>
-            Parabéns, você conseguiu completar o jogo!
         </div>
-        <button id="restart" onclick="restart()">Restart</button>
-    </div>
 
-    <script src="./scripts/game.js"></script>
-    <script src="./scripts/script.js"></script>
-</body>
+        <div id="gameOver">
+            <div>Parabéns, você conseguiu completar o jogo!</div>
+            <div class="endTime"></div>
+            <div class="endMoves"></div>
+            <button id="restart" onclick="restart()">Restart</button>
+        </div>
 
+        <script src="./scripts/game.js"></script>
+        <script src="./scripts/script.js"></script>
+    </body>
 </html>

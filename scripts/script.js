@@ -2,10 +2,26 @@ const FRONT = "card-front";
 const BACK = "card-back";
 const CARD = "card";
 const ICON = "icon";
+let gameOverLayer = document.getElementById("gameOver");
+let countTime = document.getElementById("timer");
+let endTime = document.querySelector(".endTime");
+let endMoves = document.querySelector(".endMoves");
+let interval;
+let sec = 00;
+let min = 00;
+let hour = 00;
+
+let madeAMove = false;
 
 startGame();
 
 function startGame() {
+    countTime.innerHTML = "00:00:00";
+    madeAMove = false;
+    sec = 0;
+    min = 0;
+    hour = 0;
+
     initializeCards(game.createCardsFromTechs());
 }
 
@@ -45,23 +61,27 @@ function createCardFace(face, card, element) {
 }
 
 function flipCard() {
+    if (!madeAMove) {
+        interval = setInterval(startTimer, 1000);
+        madeAMove = true;
+    }
     if (game.setCard(this.id)) {
         this.classList.add("flip");
         if (game.secondCard) {
             if (game.checkMatch()) {
                 game.clearCards();
                 if (game.checkGameOver()) {
-                    let gameOverLayer = document.getElementById("gameOver");
-                    gameOverLayer.style.display = "flex";
+                    setTimeout(() => {
+                        clearInterval(interval);
+                        endTime.innerHTML = "Tempo de jogo: " + countTime.innerHTML;
+                        endMoves.innerHTML = "Total de movimentos: ";
+                        gameOverLayer.style.display = "flex";
+                    }, 200);
                 }
             } else {
                 setTimeout(() => {
-                    let firstCardView = document.getElementById(
-                        game.firstCard.id
-                    );
-                    let secondCardView = document.getElementById(
-                        game.secondCard.id
-                    );
+                    let firstCardView = document.getElementById(game.firstCard.id);
+                    let secondCardView = document.getElementById(game.secondCard.id);
 
                     firstCardView.classList.remove("flip");
                     secondCardView.classList.remove("flip");
@@ -78,4 +98,36 @@ function restart() {
     startGame();
     let gameOverLayer = document.getElementById("gameOver");
     gameOverLayer.style.display = "none";
+}
+
+function startTimer() {
+    sec = parseInt(sec);
+    min = parseInt(min);
+    hour = parseInt(hour);
+
+    sec++;
+
+    if (sec >= 60) {
+        sec = 0;
+        min += 1;
+    }
+
+    if (hour >= 60) {
+        min = 0;
+        hour += 1;
+    }
+
+    if (sec <= 9) {
+        sec = "0" + sec;
+    }
+
+    if (min <= 9) {
+        min = "0" + min;
+    }
+
+    if (hour <= 9) {
+        hour = "0" + hour;
+    }
+
+    countTime.innerHTML = hour + ":" + min + ":" + sec;
 }
