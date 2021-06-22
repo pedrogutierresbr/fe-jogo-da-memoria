@@ -4,9 +4,11 @@ const CARD = "card";
 const ICON = "icon";
 let gameOverLayer = document.getElementById("gameOver");
 let countTime = document.getElementById("timer");
+let countMoves = document.getElementById("moves");
 let endTime = document.querySelector(".endTime");
 let endMoves = document.querySelector(".endMoves");
 let interval;
+let moves = 0;
 let sec = 00;
 let min = 00;
 let hour = 00;
@@ -17,7 +19,9 @@ startGame();
 
 function startGame() {
     countTime.innerHTML = "00:00:00";
+    countMoves.innerHTML = "00";
     madeAMove = false;
+    moves = 0;
     sec = 0;
     min = 0;
     hour = 0;
@@ -68,13 +72,14 @@ function flipCard() {
     if (game.setCard(this.id)) {
         this.classList.add("flip");
         if (game.secondCard) {
+            updateMove();
             if (game.checkMatch()) {
                 game.clearCards();
                 if (game.checkGameOver()) {
                     setTimeout(() => {
                         clearInterval(interval);
                         endTime.innerHTML = "Tempo de jogo: " + countTime.innerHTML;
-                        endMoves.innerHTML = "Total de movimentos: ";
+                        endMoves.innerHTML = "Total de movimentos: " + moves;
                         gameOverLayer.style.display = "flex";
                     }, 200);
                 }
@@ -130,4 +135,9 @@ function startTimer() {
     }
 
     countTime.innerHTML = hour + ":" + min + ":" + sec;
+}
+
+function updateMove() {
+    moves++;
+    countMoves.innerHTML = moves;
 }
