@@ -57,6 +57,7 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     font-size: 50px;
+    text-align: center;
 
     display: none;
     flex-direction: column;
@@ -81,6 +82,36 @@ body {
     grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
     gap: 20px;
 }
+
+.wrapper{
+    position: relative;
+}
+
+.scoreboard{
+    position: absolute;
+    text-align: left;
+    max-width: 200px;
+    top: -250px;
+    left: -300px;
+}
+
+.scoreboard h3{
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.scoreboard p{
+    font-size: 24px;
+}
+
+.scoreboard div:nth-child(2){
+    height: 1px;
+    width: 100%;
+    background: grey;
+    margin: 30px 0;
+}
+
+
 
 /* Responsive behavior */
 
