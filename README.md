@@ -1,5 +1,3 @@
-# In progress....
-
 # Memory game
 
 ## About the project
