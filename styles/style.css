@@ -4,13 +4,21 @@
     box-sizing: border-box;
 }
 
+html {
+    --bg: #c7cdd3;
+    --bg-panel: #ebebeb;
+    --color-headings: #0077ff;
+    --color-text: #333333;
+    --shadow: rgba(0, 0, 0, 0.45);
+}
+
 body {
     font-family: "Righteous", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #c7cdd3;
+    background-color: var(--bg);
 }
 
 .card {
@@ -31,7 +39,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);
+    box-shadow: 10px 10px 10px var(--shadow);
     backface-visibility: hidden;
 }
 
@@ -96,19 +104,69 @@ body {
 }
 
 .scoreboard h3 {
+    color: var(--color-text);
     font-size: 28px;
     margin-bottom: 10px;
 }
 
 .scoreboard p {
+    color: var(--color-text);
     font-size: 24px;
 }
 
-.scoreboard div:nth-child(2) {
+.scoreboard > div:nth-child(2),
+.scoreboard > div:nth-child(4) {
     height: 1px;
     width: 100%;
     background: grey;
     margin: 30px 0;
+}
+
+.container .toggle {
+    display: flex;
+    justify-content: center;
+}
+
+input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: grey;
+    float: right;
+    border-radius: 100px;
+    position: relative;
+}
+
+label::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked + label {
+    background-color: var(--color-headings);
+}
+
+input:checked + label::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 45px;
 }
 
 /* Responsive behavior */

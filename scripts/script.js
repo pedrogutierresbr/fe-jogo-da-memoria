@@ -2,6 +2,9 @@ const FRONT = "card-front";
 const BACK = "card-back";
 const CARD = "card";
 const ICON = "icon";
+const html = document.querySelector("html");
+const checkbox = document.querySelector("input[name=theme]");
+
 let gameOverLayer = document.getElementById("gameOver");
 let countTime = document.getElementById("timer");
 let countMoves = document.getElementById("moves");
@@ -105,6 +108,8 @@ function restart() {
     gameOverLayer.style.display = "none";
 }
 
+// Timer
+
 function startTimer() {
     sec = parseInt(sec);
     min = parseInt(min);
@@ -137,7 +142,39 @@ function startTimer() {
     countTime.innerHTML = hour + ":" + min + ":" + sec;
 }
 
+// Moviment counter
+
 function updateMove() {
     moves++;
     countMoves.innerHTML = moves;
 }
+
+// Dark theme
+
+const initialColors = {
+    bg: window.getComputedStyle(html).getPropertyValue("--bg"),
+    bgPanel: window.getComputedStyle(html).getPropertyValue("--bg-panel"),
+    colorHeadings: window.getComputedStyle(html).getPropertyValue("--color-headings"),
+    colorText: window.getComputedStyle(html).getPropertyValue("--color-text"),
+    shadow: window.getComputedStyle(html).getPropertyValue("--shadow"),
+};
+
+const darkMode = {
+    bg: "#333333",
+    bgPanel: "#434343",
+    colorHeadings: "#3664FF",
+    colorText: "#b5b5b5",
+    shadow: "rgba(210, 210, 210, 0.45)",
+};
+
+const transformKey = (key) => "--" + key.replace(/([A-Z])/, "-$1").toLowerCase();
+
+const changeColors = (colors) => {
+    Object.keys(colors).map((key) => {
+        html.style.setProperty(transformKey(key), colors[key]);
+    });
+};
+
+checkbox.addEventListener("change", ({ target }) => {
+    target.checked ? changeColors(darkMode) : changeColors(initialColors);
+});
