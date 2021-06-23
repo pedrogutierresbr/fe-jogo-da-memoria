@@ -84,7 +84,7 @@ function flipCard() {
                         endTime.innerHTML = "Tempo de jogo: " + countTime.innerHTML;
                         endMoves.innerHTML = "Total de movimentos: " + moves;
                         gameOverLayer.style.display = "flex";
-                    }, 200);
+                    }, 800);
                 }
             } else {
                 setTimeout(() => {
