@@ -24,7 +24,7 @@ To see the **web version**, click here: [https://jogodamemoriaa.netlify.app/](ht
 
 ```
 # clone the repository
-https://github.com/pedrogutierresbr/jogo-da-memoria.git
+git clone https://github.com/pedrogutierresbr/jogo-da-memoria.git
 ```
 
 # Author
